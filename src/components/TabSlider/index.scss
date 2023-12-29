@@ -1,0 +1,36 @@
+.tab-slider {
+  * {
+    z-index: inherit;
+  }
+  --padding: 1px;
+  width: 100%;
+  position: relative;
+  background-color: grey;
+  border-radius: 16px;
+  padding: var(--padding);
+  .tab-container {
+    display: flex;
+    z-index: 1;
+  }
+  .tab {
+    padding: 12px 4px;
+    flex: 1 1 0;
+    text-align: center;
+    transition: color 0.3s;
+    color: #ececec;
+    cursor: pointer;
+    &.active {
+      color: #222;
+    }
+  }
+  .indicator-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding: var(--padding);
+    display: flex;
+    z-index: 0;
+  }
+}
