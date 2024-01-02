@@ -5,14 +5,32 @@ interface Props {
   tabs: string[];
   currentTab: string;
   onChange: (newTab: string) => void;
+  gap?: number;
 }
 
-export default function TabSlider({ currentTab, onChange, tabs }: Props) {
+export default function TabSlider({
+  currentTab,
+  onChange,
+  tabs,
+  gap = 0,
+}: Props) {
   const currentTabIndex = tabs.indexOf(currentTab);
+  const N = tabs.length;
+  const g = `${gap}px`;
+  const vLength = `(100% + ${g})`;
+  const vWidth = `(${vLength} / ${N})`;
+
+  const indicatorWidth = `${vWidth} - ${g}`;
+  const indicatorPosition = `${currentTabIndex} * ${vWidth}`;
 
   return (
     <div className='tab-slider'>
-      <div className='tab-container'>
+      <div
+        className='tab-container'
+        style={{
+          columnGap: `${gap}px`,
+        }}
+      >
         {tabs.map((tab, index) => (
           <Tab
             key={index}
@@ -25,12 +43,10 @@ export default function TabSlider({ currentTab, onChange, tabs }: Props) {
       <div className='indicator-container'>
         <div
           style={{
-            backgroundColor: 'white',
-            width: `calc(100% / ${tabs.length})`,
-            borderRadius: '16px',
-            marginLeft: `calc(${currentTabIndex} * 100% / ${tabs.length})`,
-            transition: 'margin-left 0.3s',
+            width: `calc(${indicatorWidth})`,
+            marginLeft: `calc(${indicatorPosition})`,
           }}
+          className='indicator'
         />
       </div>
     </div>
