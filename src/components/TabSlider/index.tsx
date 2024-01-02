@@ -6,6 +6,7 @@ interface Props {
   currentTab: string;
   onChange: (newTab: string) => void;
   gap?: number;
+  padding?: number;
 }
 
 export default function TabSlider({
@@ -13,6 +14,7 @@ export default function TabSlider({
   onChange,
   tabs,
   gap = 0,
+  padding = 0,
 }: Props) {
   const currentTabIndex = tabs.indexOf(currentTab);
   const N = tabs.length;
@@ -24,7 +26,7 @@ export default function TabSlider({
   const indicatorPosition = `${currentTabIndex} * ${vWidth}`;
 
   return (
-    <div className='tab-slider'>
+    <div className='tab-slider' style={{ padding: `${padding}px` }}>
       <div
         className='tab-container'
         style={{
@@ -40,7 +42,7 @@ export default function TabSlider({
           />
         ))}
       </div>
-      <div className='indicator-container'>
+      <div className='indicator-container' style={{ padding: `${padding}px` }}>
         <div
           style={{
             width: `calc(${indicatorWidth})`,

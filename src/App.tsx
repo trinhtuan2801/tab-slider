@@ -19,6 +19,8 @@ function App() {
           tabs={['Tab 1', 'Tab 2', 'Tab 3', 'Tab 4']}
           currentTab={tab}
           onChange={setTab}
+          gap={10}
+          padding={3}
         />
       </div>
     </div>
